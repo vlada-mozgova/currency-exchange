@@ -1,7 +1,9 @@
 import { FC, useEffect, useState } from 'react'
 import Button from '../../components/Button/Button'
 import Input from '../../components/Input/Input'
-import classes from './Home.module.scss'
+import CustomLink from '../../components/CustomLink/CustomLink'
+import classes from './HomePage.module.scss'
+import { requestOptions } from '../../utils/apiHelper'
 
 const Home: FC = () => {
   const [amount, setAmount] = useState('1.00')
@@ -25,14 +27,6 @@ const Home: FC = () => {
     setLoading(true)
 
     try {
-      const myHeaders = new Headers();
-      myHeaders.append('apikey', process.env.REACT_APP_API_KEY as string);
-
-      const requestOptions = {
-        method: 'GET',
-        headers: myHeaders
-      };
-
       fetch(`https://api.apilayer.com/fixer/convert?to=${wantedCurrency}&from=${baseCurrency}&amount=${amount}`, requestOptions)
         .then(response => response.json())
         .then(result => {
@@ -49,7 +43,10 @@ const Home: FC = () => {
 
   return (
     <div className={classes.exchangeWrapper}>
-      <h2>Convert currency</h2>
+      <div className={classes.exchangeTitle}>
+        <h2>Convert currency</h2>
+        <CustomLink label='List of currency' url='/currency-list' />
+      </div>
       <div className={classes.exhangeBodyWrapper}>
         <div className={classes.exhangeBody}>
           <div className={classes.inputWrapper}>

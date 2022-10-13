@@ -1,0 +1,12 @@
+@use '../../styles/variables.scss' as *;
+
+.customLink {
+    text-decoration: none;
+    color: $blue-light;
+    font-weight: 600;
+    font-size: 20px;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

@@ -1,14 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import Home from "./pages/Home/Home";
+import CurrencyPage from "./pages/CurrencyPage/CurrencyPage";
+import HomePage from "./pages/HomePage/HomePage";
 
 const App = () => {
   return (
     <Layout>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/all-currency" element={<div />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/currency-list" element={<CurrencyPage />} />
         </Routes>
       </BrowserRouter>
     </Layout>
