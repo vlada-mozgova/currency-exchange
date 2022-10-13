@@ -10,6 +10,8 @@ const Home: FC = () => {
 
   const [convertedCurrency, setConvertedCurrency] = useState('')
 
+  const [loading, setLoading] = useState(false)
+
   useEffect(() => {
     if (baseCurrency) setBaseCurrency(baseCurrency.toUpperCase())
     if (wantedCurrency) setWantedCurrency(wantedCurrency.toUpperCase())
@@ -17,9 +19,33 @@ const Home: FC = () => {
 
   useEffect(() => {
     if (convertedCurrency) handleConvert()
-  }, [amount])
+  }, [amount, baseCurrency, wantedCurrency])
 
-  const handleConvert = () => { }
+  const handleConvert = async () => {
+    setLoading(true)
+
+    try {
+      const myHeaders = new Headers();
+      myHeaders.append('apikey', process.env.REACT_APP_API_KEY as string);
+
+      const requestOptions = {
+        method: 'GET',
+        headers: myHeaders
+      };
+
+      fetch(`https://api.apilayer.com/fixer/convert?to=${wantedCurrency}&from=${baseCurrency}&amount=${amount}`, requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          setConvertedCurrency(result.result)
+          setLoading(false)
+        })
+        .catch(error => console.log('error', error));
+
+
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }
 
   return (
     <div className={classes.exchangeWrapper}>
@@ -39,15 +65,18 @@ const Home: FC = () => {
             <Input placeholder='Type wanted currency' value={wantedCurrency} setValue={setWantedCurrency} />
           </div>
         </div>
-        {convertedCurrency &&
-          <div className={classes.convertedCurrency}>
-            <span>{`${amount} ${baseCurrency} =`} </span>
-            <h2>{`${convertedCurrency} ${wantedCurrency}`}</h2>
-          </div>
+        {!loading ?
+          convertedCurrency && (
+            <div className={classes.convertedCurrency}>
+              <span>{`${amount} ${baseCurrency} = `} </span>
+              <h2>{`${convertedCurrency} ${wantedCurrency}`}</h2>
+            </div>
+          ) :
+          'Loading...'
         }
         <Button type='button' label='Convert' onClick={handleConvert} />
       </div>
-    </div>
+    </div >
   )
 }
 
