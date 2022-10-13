@@ -1,0 +1,19 @@
+@use '../../styles/variables.scss' as *;
+
+.customButton {
+    background-color: $blue-light;
+    color: $white;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    width: fit-content;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $blue-xlight;
+        transition-property: background-color, border-color;
+        transition-duration: 0.3s;
+    }
+}

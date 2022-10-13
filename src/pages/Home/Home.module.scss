@@ -1,0 +1,54 @@
+@use '../../styles/variables.scss' as *;
+
+.exchangeWrapper {
+    background-color: white;
+    box-shadow: $grey-xlight 0px 6px 12px;
+    z-index: 5;
+    border-radius: 10px;
+    width: 70%;
+
+    h2 {
+        margin: 20px 30px;
+        margin-bottom: 0;
+    }
+
+    .exhangeBodyWrapper {
+        padding: 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .exhangeBody {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 16px;
+
+            .inputWrapper {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                gap: 8px;
+
+                h4 {
+                    margin: 0;
+                }
+            }
+        }
+
+        .convertedCurrency {
+            span {
+                color: $grey-light;
+            }
+
+            h2 {
+                margin: 0;
+                margin-top: 10px;
+            }
+        }
+
+        button {
+            align-self: flex-end;
+        }
+    }
+}

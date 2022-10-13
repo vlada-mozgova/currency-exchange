@@ -1,0 +1,25 @@
+@use '../../styles/variables.scss' as *;
+
+.layout {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    color: $grey-dark;
+
+    .bannerWrapper {
+        position: absolute;
+        top: 0;
+        background-color: $blue;
+        height: 410px;
+        width: 100%;
+        color: $white;
+        display: flex;
+        justify-content: center;
+
+        h1 {
+            margin-top: 100px;
+        }
+    }
+}

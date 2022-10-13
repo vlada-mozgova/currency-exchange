@@ -1,0 +1,17 @@
+@use '../../styles/variables.scss' as *;
+
+.customInput {
+    box-sizing: border-box;
+    background: $white;
+    border: 1px solid $grey-xlight;
+    border-radius: 10px;
+    padding: 16px 14px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 150%;
+    color: $grey-dark;
+
+    &::placeholder {
+        color: $grey-light;
+    }
+}
